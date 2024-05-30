@@ -4,7 +4,9 @@
   "description": "The goal of the project is to create a module that allows to transfer a vehicle from one driver to another while keeping a record of all transfers.",
   "main": "app.ts",
   "scripts": {
-    "dev": "nodemon -r tsconfig-paths/register ./src/app.ts"
+    "dev": "nodemon -r tsconfig-paths/register ./src/app.ts",
+    "prettier:check":"prettier --check 'src/**/*.{ts,js}'",
+    "prettier:fix":"prettier --write 'src/**/*.{ts,js}'"
   },
   "author": "Harshal Solanki",
   "license": "ISC",
