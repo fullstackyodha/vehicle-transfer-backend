@@ -8,7 +8,7 @@ import HTTP_STATUS from 'http-status-codes';
 import 'express-async-errors';
 import appRoutes from '@/routes';
 import { app } from './app';
-import { CustomError, ErrorResponse } from './utils/ErrorHandler';
+import { CustomError, ErrorResponse } from '@/utils/ErrorHandler';
 
 const PORT = 5000;
 
