@@ -5,16 +5,16 @@ export class Vehicle {
     @PrimaryColumn()
     id: string;
 
-    @Column()
+    @Column({ nullable: false })
     vehicleNumber: string;
 
-    @Column()
+    @Column({ nullable: false })
     vehicleType: string;
 
-    @Column()
+    @Column({ nullable: false })
     PUC_certificate: string;
 
-    @Column()
+    @Column({ nullable: false })
     insurance_certificate: string;
 
     constructor(

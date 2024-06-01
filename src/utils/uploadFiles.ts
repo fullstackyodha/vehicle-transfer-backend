@@ -2,6 +2,7 @@ import cloudinary, { UploadApiResponse, UploadApiErrorResponse } from 'cloudinar
 
 export function uploadImage(
     file: string,
+    folderName: string,
     public_id?: string,
     overwrite?: boolean,
     invalidate?: boolean
@@ -10,7 +11,12 @@ export function uploadImage(
         // Cloudinary Upload function
         cloudinary.v2.uploader.upload(
             file,
-            { public_id, overwrite, invalidate, resource_type: 'image' },
+            {
+                public_id: `${folderName}/${public_id}`,
+                overwrite,
+                invalidate,
+                resource_type: 'image'
+            },
             (err: UploadApiErrorResponse | undefined, result: UploadApiResponse | undefined) => {
                 if (err) resolve(err);
                 resolve(result);

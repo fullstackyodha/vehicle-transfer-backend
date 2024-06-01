@@ -19,7 +19,7 @@ export const createDriver = async (req: Request, res: Response, next: NextFuncti
     // Create new Id
     const id = uuidv4();
 
-    const result = await uploadImage(profile_photo, id, true, true);
+    const result = await uploadImage(profile_photo, 'profile_photos', id, true, true);
 
     if (!result?.public_id) {
         throw new BadRequestError('File upload: Error occured. Try again!!!');
