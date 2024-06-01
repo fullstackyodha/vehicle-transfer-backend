@@ -1,6 +1,7 @@
 import express, { Express } from 'express';
 import { Server } from '@/serverSetup';
 import connectDB from '@/databaseSetup';
+import { cloudinaryConfig } from '@/config';
 import 'reflect-metadata';
 
 class VehicleTransferApp {
@@ -12,6 +13,8 @@ class VehicleTransferApp {
         server.start();
 
         connectDB();
+
+        cloudinaryConfig();
     }
 }
 

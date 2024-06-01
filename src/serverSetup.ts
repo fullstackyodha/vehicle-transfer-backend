@@ -9,8 +9,10 @@ import 'express-async-errors';
 import appRoutes from '@/routes';
 import { app } from './app';
 import { CustomError, ErrorResponse } from '@/utils/ErrorHandler';
+import dotenv from 'dotenv';
+import process from 'process';
 
-const PORT = 5000;
+dotenv.config({});
 
 export class Server {
     private app: Application;
@@ -71,8 +73,8 @@ export class Server {
         try {
             const httpServer: http.Server = new http.Server(app);
 
-            httpServer.listen(PORT, () => {
-                console.log(`Server running on port ${PORT}`);
+            httpServer.listen(process.env.PORT, () => {
+                console.log(`Server running on port ${process.env.PORT}`);
             });
         } catch (err) {}
     }

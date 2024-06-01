@@ -1,10 +1,13 @@
 import { DataSource } from 'typeorm';
 import { Vehicle } from '@/features/vehicles/models/vehicle.model';
 import { Driver } from '@/features/drivers/models/driver.model';
+import { Transfers } from './features/transfers/models/transfer.model';
+
+export let AppDataSource: DataSource;
 
 export default function () {
     const connectDB = () => {
-        const AppDataSource = new DataSource({
+        AppDataSource = new DataSource({
             type: 'postgres',
             host: 'localhost',
             port: 5432,
@@ -13,7 +16,7 @@ export default function () {
             database: 'vehicle_transfer_db',
             synchronize: true,
             logging: true,
-            entities: [Vehicle, Driver],
+            entities: [Vehicle, Driver, Transfers],
             subscribers: [],
             migrations: []
         });

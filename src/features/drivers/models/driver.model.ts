@@ -1,22 +1,27 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
-import { v4 as uuidv4 } from 'uuid';
+import { Entity, Column, PrimaryColumn } from 'typeorm';
 
 @Entity()
 export class Driver {
-    @PrimaryGeneratedColumn('uuid')
+    @PrimaryColumn()
     id: string;
 
-    @Column()
+    @Column({
+        nullable: false
+    })
     name: string;
 
-    @Column()
+    @Column({
+        nullable: false
+    })
     phone_number: string;
 
-    @Column()
+    @Column({
+        nullable: false
+    })
     profile_photo: string;
 
-    constructor(name: string, phone_number: string, profile_photo: string) {
-        this.id = uuidv4();
+    constructor(id: string, name: string, phone_number: string, profile_photo: string) {
+        this.id = id;
         this.name = name;
         this.phone_number = phone_number;
         this.profile_photo = profile_photo;

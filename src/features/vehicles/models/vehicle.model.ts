@@ -1,9 +1,8 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
-import { v4 as uuidv4 } from 'uuid';
+import { Entity, PrimaryColumn, Column } from 'typeorm';
 
 @Entity()
 export class Vehicle {
-    @PrimaryGeneratedColumn('uuid')
+    @PrimaryColumn()
     id: string;
 
     @Column()
@@ -19,12 +18,13 @@ export class Vehicle {
     insurance_certificate: string;
 
     constructor(
+        id: string,
         vehicleNumber: string,
         vehicleType: string,
         PUC_certificate: string,
         insurance_certificate: string
     ) {
-        this.id = uuidv4();
+        this.id = id;
         this.vehicleNumber = vehicleNumber;
         this.vehicleType = vehicleType;
         this.PUC_certificate = PUC_certificate;
