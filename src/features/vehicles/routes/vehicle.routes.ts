@@ -1,4 +1,5 @@
 import express, { Router } from 'express';
+import { createVehicle } from '../controllers/create_vehicle';
 
 class VehicleRoutes {
     private router: Router;
@@ -8,7 +9,7 @@ class VehicleRoutes {
     }
 
     public routes(): Router {
-        this.router.post('/create');
+        this.router.post('/create', createVehicle);
 
         return this.router;
     }
