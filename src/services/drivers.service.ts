@@ -20,7 +20,7 @@ export class DriverService {
 
             return driver;
         } catch (error) {
-            console.error('Error saving driver:', error);
+            console.error('Error saving driver', error);
         }
     }
 

@@ -7,7 +7,7 @@ export class Transfers {
     id: string;
 
     @Column()
-    vehicleId: string;
+    vehicle_id: string;
 
     @Column()
     from: string;
@@ -15,12 +15,12 @@ export class Transfers {
     @Column()
     to: string;
 
-    @Column()
+    @Column({ type: 'timestamp' })
     date: string;
 
-    constructor(vehicleId: string, from: string, to: string, date: string) {
-        this.id = uuidv4();
-        this.vehicleId = vehicleId;
+    constructor(id: string, vehicle_id: string, from: string, to: string, date: string) {
+        this.id = id;
+        this.vehicle_id = vehicle_id;
         this.from = from;
         this.to = to;
         this.date = date;

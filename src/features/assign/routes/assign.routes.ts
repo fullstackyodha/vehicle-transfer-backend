@@ -1,7 +1,7 @@
 import express, { Router } from 'express';
-import { createTransfer } from '../controllers/transfer';
+import { assignVehicle } from '../controller/assign';
 
-class TransferRoutes {
+class AssignRoutes {
     private router: Router;
 
     constructor() {
@@ -9,10 +9,10 @@ class TransferRoutes {
     }
 
     public routes(): Router {
-        this.router.post('/vehicle', createTransfer);
+        this.router.post('/driver', assignVehicle);
 
         return this.router;
     }
 }
 
-export const transferRoutes: TransferRoutes = new TransferRoutes();
+export const assignRoutes: AssignRoutes = new AssignRoutes();
