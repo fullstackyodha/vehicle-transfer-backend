@@ -24,3 +24,27 @@ export const assignVehicle = async (req: Request, res: Response, next: NextFunct
         console.log('Error assigning vehicle to the driver.');
     }
 };
+
+export const getAllCurrentAssignedVehicle = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    try {
+        const allAssignedVehicle = await AssignService.getAllCurrentlyAssignedVehicle();
+
+        if (!allAssignedVehicle) {
+            throw new BadRequestError('Error getting all currently assigned vehicle.');
+        }
+
+        res.status(HTTP_STATUS.OK).json({
+            data: {
+                allAssignedVehicle: [...allAssignedVehicle]
+            }
+        });
+    } catch (err) {
+        res.status(HTTP_STATUS.BAD_REQUEST).json({
+            message: err
+        });
+    }
+};

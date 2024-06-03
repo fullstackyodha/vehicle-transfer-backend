@@ -32,4 +32,20 @@ export class VehicleService {
 
         return vehicle;
     }
+
+    static async getAllVehicle() {
+        const vehicleRepository = AppDataSource.getRepository(Vehicle);
+
+        const vehicles = await vehicleRepository.find();
+
+        return vehicles;
+    }
+
+    static async getVehicleById(id: string) {
+        const vehicleRepository = AppDataSource.getRepository(Vehicle);
+
+        const vehicle = await vehicleRepository.findOneBy({ id });
+
+        return vehicle;
+    }
 }

@@ -31,4 +31,20 @@ export class DriverService {
 
         return driver;
     }
+
+    static async getAllDrivers() {
+        const driverRepository = AppDataSource.getRepository(Driver);
+
+        const drivers = await driverRepository.find();
+
+        return drivers;
+    }
+
+    static async getDriverById(id: string) {
+        const driverRepository = AppDataSource.getRepository(Driver);
+
+        const driver = await driverRepository.findOneBy({ id });
+
+        return driver;
+    }
 }

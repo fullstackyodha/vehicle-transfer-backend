@@ -1,5 +1,5 @@
 import express, { Router } from 'express';
-import { assignVehicle } from '../controller/assign';
+import { assignVehicle, getAllCurrentAssignedVehicle } from '../controller/assign';
 
 class AssignRoutes {
     private router: Router;
@@ -10,6 +10,8 @@ class AssignRoutes {
 
     public routes(): Router {
         this.router.post('/driver', assignVehicle);
+
+        this.router.get('/getCurrentAssignedVehicle', getAllCurrentAssignedVehicle);
 
         return this.router;
     }
