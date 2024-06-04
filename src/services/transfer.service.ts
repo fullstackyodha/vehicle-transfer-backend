@@ -23,4 +23,28 @@ export class TransferService {
             return error;
         }
     }
+
+    static async getTansferHistory(vehicle_id: string) {
+        try {
+            const transferRepository = AppDataSource.getRepository(Transfers);
+
+            const query = `
+                SELECT *
+                FROM (
+                    SELECT tf.date as transferDate, drfrom.name as from_name,
+                           drto.name as to_name, tf.vehicle_id as vehicle_id
+                    FROM transfers as tf
+                    INNER JOIN driver as drfrom ON tf.from = drfrom.id
+                    INNER JOIN driver as drto ON tf.to = drto.id
+                ) as transfersWithName
+                INNER JOIN vehicle as v ON transfersWithName.vehicle_id = v.id
+                WHERE transfersWithName.vehicle_id = '${vehicle_id}'
+                ORDER BY transfersWithName.transferDate DESC
+            `;
+
+            const transferHistory = await transferRepository.query(query);
+
+            return transferHistory;
+        } catch (err) {}
+    }
 }

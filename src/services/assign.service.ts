@@ -20,7 +20,7 @@ export class AssignService {
         }
     }
 
-    static async getAllCurrentlyAssignedVehicle() {
+    static async getAllRecentlyAssignedVehicle() {
         const assignRepository = AppDataSource.getRepository(Assigned);
 
         const query = `

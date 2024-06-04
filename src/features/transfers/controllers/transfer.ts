@@ -34,3 +34,30 @@ export const createTransfer = async (req: Request, res: Response, next: NextFunc
         });
     }
 };
+
+export const getTransferHistoryByVehicleId = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    try {
+        const { vehicle_id } = req.params;
+        const transferHistory = await TransferService.getTansferHistory(vehicle_id);
+
+        res.status(HTTP_STATUS.OK).json({
+            message: 'Transfer History',
+            data: {
+                transfers: transferHistory
+            }
+        });
+    } catch (err) {
+        res.status(HTTP_STATUS.BAD_REQUEST).json({
+            message: `${err}`
+        });
+    }
+};
+
+export const getAllTransferedVehicle = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+    } catch (err) {}
+};

@@ -1,5 +1,9 @@
 import express, { Router } from 'express';
-import { createTransfer } from '../controllers/transfer';
+import {
+    createTransfer,
+    getTransferHistoryByVehicleId,
+    getAllTransferedVehicle
+} from '../controllers/transfer';
 
 class TransferRoutes {
     private router: Router;
@@ -9,7 +13,11 @@ class TransferRoutes {
     }
 
     public routes(): Router {
-        this.router.post('/vehicle', createTransfer);
+        this.router.post('/', createTransfer);
+
+        this.router.get('/vehicles', getAllTransferedVehicle);
+
+        this.router.get('/history/:vehicle_id', getTransferHistoryByVehicleId);
 
         return this.router;
     }

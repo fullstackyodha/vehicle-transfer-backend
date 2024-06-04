@@ -25,13 +25,13 @@ export const assignVehicle = async (req: Request, res: Response, next: NextFunct
     }
 };
 
-export const getAllCurrentAssignedVehicle = async (
+export const getAllRecentlyAssignedVehicle = async (
     req: Request,
     res: Response,
     next: NextFunction
 ) => {
     try {
-        const allAssignedVehicle = await AssignService.getAllCurrentlyAssignedVehicle();
+        const allAssignedVehicle = await AssignService.getAllRecentlyAssignedVehicle();
 
         if (!allAssignedVehicle) {
             throw new BadRequestError('Error getting all currently assigned vehicle.');
