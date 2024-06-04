@@ -1,5 +1,6 @@
 import { AppDataSource } from '@/databaseSetup';
 import { Transfers } from '@/features/transfers/models/transfer.model';
+import { query } from 'express';
 
 export class TransferService {
     static async transferVehicle(id: string, from: string, to: string, vehicle_id: string) {
@@ -46,5 +47,22 @@ export class TransferService {
 
             return transferHistory;
         } catch (err) {}
+    }
+
+    static async getAllTransferedVehicleData() {
+        const transferRepository = AppDataSource.getRepository(Transfers);
+
+        const query = `
+            SELECT *
+            from vehicle
+            WHERE vehicle.id IN (
+                SELECT vehicle_id
+                from transfers
+            )
+        `;
+
+        const transferedVehicle = await transferRepository.query(query);
+
+        return transferedVehicle;
     }
 }

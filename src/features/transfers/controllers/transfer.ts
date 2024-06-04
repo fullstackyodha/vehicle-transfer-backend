@@ -59,5 +59,13 @@ export const getTransferHistoryByVehicleId = async (
 
 export const getAllTransferedVehicle = async (req: Request, res: Response, next: NextFunction) => {
     try {
+        const allTransferedvehicles = await TransferService.getAllTransferedVehicleData();
+
+        res.status(HTTP_STATUS.OK).json({
+            message: '',
+            data: {
+                vehicles: allTransferedvehicles
+            }
+        });
     } catch (err) {}
 };
