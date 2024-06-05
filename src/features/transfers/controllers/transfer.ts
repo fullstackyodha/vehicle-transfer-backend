@@ -35,14 +35,14 @@ export const createTransfer = async (req: Request, res: Response, next: NextFunc
     }
 };
 
-export const getTransferHistoryByVehicleId = async (
+export const getTransferHistoryByVehicleNumber = async (
     req: Request,
     res: Response,
     next: NextFunction
 ) => {
     try {
-        const { vehicle_id } = req.params;
-        const transferHistory = await TransferService.getTansferHistory(vehicle_id);
+        const { vehicleNumber } = req.params;
+        const transferHistory = await TransferService.getTansferHistory(vehicleNumber);
 
         res.status(HTTP_STATUS.OK).json({
             message: 'Transfer History',

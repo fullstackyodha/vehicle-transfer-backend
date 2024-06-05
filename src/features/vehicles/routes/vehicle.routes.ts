@@ -1,7 +1,6 @@
 import express, { Router } from 'express';
 import { createVehicle } from '../controllers/create_vehicle';
 import { getAllVehicle, getVehicleById } from '../controllers/get_vehicle';
-import { getDriverById } from '@/features/drivers/controllers/get_drivers';
 
 class VehicleRoutes {
     private router: Router;

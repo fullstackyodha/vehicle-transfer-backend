@@ -24,7 +24,7 @@ export class AssignService {
         const assignRepository = AppDataSource.getRepository(Assigned);
 
         const query = `
-        SELECT vehicle_id, driver_id, assigned_date
+        SELECT *
         FROM (
             SELECT
                 vehicle_id,
@@ -33,6 +33,8 @@ export class AssignService {
                 RANK() OVER (PARTITION BY vehicle_id ORDER BY assigned_date DESC) as rank
             FROM assigned
         ) as ranked
+        INNER JOIN vehicle ON ranked.vehicle_id = vehicle.id
+        INNER JOIN driver ON ranked.driver_id = driver.id
         WHERE rank = 1
     `;
 
