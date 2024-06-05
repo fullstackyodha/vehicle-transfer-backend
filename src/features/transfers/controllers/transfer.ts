@@ -9,6 +9,10 @@ export const createTransfer = async (req: Request, res: Response, next: NextFunc
     try {
         const { from, to, vehicle_id } = req.body;
 
+        if (from === to) {
+            throw new BadRequestError('From and To cannot be same');
+        }
+
         const transferid = uuidv4();
 
         const createdTransfer = await TransferService.transferVehicle(
