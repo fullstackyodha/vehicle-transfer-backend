@@ -25,12 +25,13 @@ export class TransferService {
         }
     }
 
-    static async getTansferHistory(vehicleNumber: string) {
+    static async getTansferHistory(vehicle_id: string) {
         try {
             const transferRepository = AppDataSource.getRepository(Transfers);
 
             const query = `
-                SELECT *
+                SELECT transfersWithName.from_name,
+                       transfersWithName.to_name, transfersWithName.transferDate
                 FROM (
                     SELECT tf.date as transferDate, drfrom.name as from_name,
                            drto.name as to_name, tf.vehicle_id as vehicle_id
@@ -39,7 +40,7 @@ export class TransferService {
                     INNER JOIN driver as drto ON tf.to = drto.id
                 ) as transfersWithName
                 INNER JOIN vehicle as v ON transfersWithName.vehicle_id = v.id
-                WHERE transfersWithName.vehicleNumber = '${vehicleNumber}'
+                WHERE transfersWithName.vehicle_id = '${vehicle_id}'
                 ORDER BY transfersWithName.transferDate DESC
             `;
 

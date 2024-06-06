@@ -48,4 +48,18 @@ export class VehicleService {
 
         return vehicle;
     }
+
+    static async getVehicleByNumber(vehicleNumber: string) {
+        const vehicleRepository = AppDataSource.getRepository(Vehicle);
+
+        const query = `
+            SELECT id
+            FROM vehicle
+            WHERE "vehicleNumber" = '${vehicleNumber}'
+        `;
+
+        const vehicle_id = await vehicleRepository.query(query);
+
+        return vehicle_id[0].id;
+    }
 }
